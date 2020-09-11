@@ -7,6 +7,7 @@ modifica los accesos de:
 	DB_PASSWORD= tu password
 creas la base de datos con el nombre de red
 php artisan migrate
+php artisan serve
 
 -----redneuronal ----------
 npm install
