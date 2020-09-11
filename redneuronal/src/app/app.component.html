@@ -1,0 +1,35 @@
+<body>
+  <p>Dame un valor: &nbsp;&nbsp;<input  name="decimal" type="number"></p>
+  <p>Define el tamaño del arreglo: &nbsp;&nbsp;<input  name="tamanoArreglo" type="number"></p>
+  <select name="miselect"  class="form-control" >
+    <option [value]=1 >Concatenar</option>
+    <option [value]=0 >No Concatenar</option>
+  </select>
+  <br><br>
+  <button (click)="Entrenar()">entrada</button>
+  <button (click)="redneuronal()">redneuronal</button>
+
+  <table class="row-border hover table-bordered">
+    <thead>
+      <tr>
+        <th align="center" bgcolor="C0C0C0">Audio</th>
+        <th align="center" bgcolor="C0C0C0">Video</th>
+        <th align="center" bgcolor="C0C0C0">Documento</th>
+        <th align="center" bgcolor="C0C0C0">Lenguaje Front</th>
+        <th align="center" bgcolor="C0C0C0">Lenguaje Back</th>
+        <th align="center" bgcolor="C0C0C0">Empleado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let c of entrada">
+        <td>{{c.audio}}</td>
+        <td>{{c.video}}</td>
+        <td>{{c.documento}}</td>
+        <td>{{c.lengFront}}</td>
+        <td>{{c.lengBack}}</td>
+        <td>{{c.empleado}}</td>
+      </tr>
+      </tbody>
+      </table>
+</body>
+<router-outlet></router-outlet>
