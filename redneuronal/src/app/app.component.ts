@@ -26,6 +26,7 @@ export class AppComponent {
   configuraEntrada = [];
   configuraSalida = [];
   salidaEntrenamiento;
+  pruebaSalidaRed;
   pruebaentrada = {
     'audio':5,
     'video':0,
@@ -94,30 +95,23 @@ export class AppComponent {
     this.arreglotemponral= [];
   }
 
-  entrenar(objeto){
-      console.log(this.pruebaentrada);
-      this.network.train([objeto]);
-  }
-  redneuronal(){
-    this.limpiar();
-    this.prueba =this.binSal(this.pruebaentrada,this.pruebaconfiguraEntrada);
-    console.log(this.prueba);
-    this.salidaEntrenamiento = this.network.run(this.prueba);
-    console.log(this.salidaEntrenamiento);
-  }
+  entrenar(objEntrada,objSalida){
+    this.network.train([{input:objEntrada,output:objSalida}]);
+}
+redneuronal(){
+  this.limpiar();
+  let prueba = Object.assign([],this.binSal(this.pruebaentrada,this.pruebaconfiguraEntrada));
+  this.pruebaSalidaRed = this.network.run(prueba);
+  console.log(this.pruebaSalidaRed);
+}
 
 
   Entrenar (){
     for(var llave in this.entrada){
+      let fEntrada = Object.assign({},this.binSal(this.entrada[llave],this.configuraEntrada[llave]));
       this.limpiar();
-      this.array1 = this.binSal(this.entrada[llave],this.configuraEntrada[llave]);
-      this.limpiar();
-      this.array2 = this.binSal(this.salida[llave],this.configuraSalida[llave]);
-      this.objeto.push({'input':this.array1,'output':this.array2});
-      //let fEntrada = Object.assign({},this.binSal(this.entrada[llave],this.configuraEntrada[llave]));
-      //this.limpiar();
-      //let fSalida = Object.assign({},this.binSal(this.salida[llave],this.configuraSalida[llave]));
-      this.entrenar(this.objeto);
+      let fSalida = Object.assign({},this.binSal(this.salida[llave],this.configuraSalida[llave]));
+      this.entrenar(fEntrada,fSalida);
     }
   }
 }
